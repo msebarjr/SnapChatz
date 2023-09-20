@@ -1,16 +1,19 @@
 import React from 'react'
-import GoogleLogin from 'react-google-login'
-import { useNavigate } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 
+
+// Assets
 import SnapChatzVideo from '../../assets/videos/background.mp4'
-import logo_light from '../../assets/images/logo_light.png'
-import logo_dark from '../../assets/images/logo_dark.png'
-import logo_1 from '../../assets/images/logo_1.png'
-import logo_2 from '../../assets/images/logo_2.png'
-import logo_small_1 from '../../assets/images/logo_small_1.png'
+import Logo from '../../assets/images/logo.png'
 
 const Login = () => {
+  const responseGoogle = (response) => {
+    console.log(response)
+    const user = jwt_decode(response.credential)   
+    console.log(user)     
+  }
+  
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
         <div className='relative w-full h-full'>
@@ -23,10 +26,17 @@ const Login = () => {
             autoPlay
             className='w-full h-full object-cover'
           />
-          <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay'>
+          <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-black bg-opacity-90'>
             <div className='p-5'>
-              <img src={logo_small_1} width='250px' alt="logo" />
-            </div>            
+              <img src={Logo} width='250px' alt="logo" />
+            </div>
+            <div className='shadow-2xl'>
+              <GoogleLogin
+                onSuccess={responseGoogle}
+                onError={responseGoogle}
+                useOneTap
+              />
+            </div>
           </div>
         </div>
     </div>
