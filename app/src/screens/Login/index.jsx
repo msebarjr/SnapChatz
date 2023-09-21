@@ -1,17 +1,34 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 
+import { myConfiguredSanityClient } from '../../sanity/sanityClient';
 
 // Assets
 import SnapChatzVideo from '../../assets/videos/background.mp4'
 import Logo from '../../assets/images/logo.png'
 
 const Login = () => {
-  const responseGoogle = (response) => {
-    console.log(response)
-    const user = jwt_decode(response.credential)   
-    console.log(user)     
+  const navigate = useNavigate();
+
+  const responseGoogle = (response) => {   
+    // Decodes google signin info 
+    const userGoogleInfo = jwt_decode(response.credential)     
+    localStorage.setItem('user', JSON.stringify(userGoogleInfo))
+    const { given_name: firstName, family_name: lastName, sub: googleId, picture: userPhotoUrl} = userGoogleInfo
+    
+    // Sets fields for Sanity user schema - backend > schemas > user.js
+    const doc = {
+      _id: googleId,
+      _type: 'user', // Tells Sanity which document we are creating
+      userName: `${firstName} ${lastName}`,
+      image: userPhotoUrl
+    }
+    
+    myConfiguredSanityClient.createIfNotExists(doc).then(() => {
+      navigate('/', { replace: true})
+    })
   }
   
   return (
