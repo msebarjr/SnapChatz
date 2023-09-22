@@ -6,4 +6,5 @@ export const myConfiguredSanityClient = createClient({
   apiVersion: '2023-09-20', // Targets latest API version by using the current date
   useCdn: true,
   token: process.env.REACT_APP_SANITY_TOKEN,
+  ignoreBrowserTokenWarning: true,
 });
