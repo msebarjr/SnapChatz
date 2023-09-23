@@ -7,7 +7,7 @@ import { myConfiguredSanityClient } from '../../sanity/sanityClient'
 
 // Custom Components
 import Sidebar from '../../components/Sidebar'
-import Post from '../../components/Sidebar/Post'
+import Post from '../../components/Posts'
 
 // Data
 import { userQuery } from '../../utils/sanityData'
