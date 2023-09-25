@@ -48,6 +48,10 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
     }
   };
 
+  const unlikePost = (id) => {
+    myConfiguredSanityClient.delete(id).then(() => window.location.reload());
+  };
+
   const handlePostHovered = () => {
     setIsPostHovered((prevHoveredState) => !prevHoveredState);
   };
@@ -64,6 +68,11 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
   const handleLikePost = (e) => {
     e.stopPropagation();
     likePost(_id);
+  };
+
+  const handleUnlikePost = (e) => {
+    e.stopPropagation();
+    unlikePost(_id);
   };
 
   return (
@@ -129,9 +138,42 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
                 </button>
               )}
             </div>
+            <div className='flex justify-between items-center gap-2 w-full'>
+              {destination && (
+                <a
+                  href={destination}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
+                >
+                  <BsFillArrowUpRightCircleFill />
+                  {destination.slice(12)}
+                </a>
+              )}
+              {postedBy?._id === googleId && (
+                <button
+                  type='button'
+                  className='bg-white p-2 opacity-70 hover:opacity-100 font-bold text-dark text-base rounded-3xl hover:shadow-md outline-none'
+                  onClick={handleUnlikePost}
+                >
+                  <AiTwotoneDelete />
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
+      <Link
+        to={`user-profile/${postedBy?._id}`}
+        className='flex gap-2 mt-2 items-center'
+      >
+        <img
+          className='w-8 h-8 rounded-full object-cover'
+          src={postedBy?.image}
+          alt='user-profile'
+        />
+        <p className='font-semibold capitalize'>{postedBy?.userName}</p>
+      </Link>
     </div>
   );
 };
