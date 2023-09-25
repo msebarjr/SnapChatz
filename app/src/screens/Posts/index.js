@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Custom Components
-import CreatePost from '../CreatePost';
-import Feed from '../Feed';
-import Navbar from '../Navbar';
-import PostDetail from '../PostDetail';
-import Search from '../Search';
+import CreatePost from '../../components/CreatePost';
+import Feed from '../../components/Feed';
+import Navbar from '../../components/Navbar';
+import PostDetail from '../../components/PostDetail';
+import Search from '../../components/Search';
 
 const Posts = ({ user }) => {
   const [searchInput, setSearchInput] = useState('');
