@@ -14,7 +14,7 @@ export const searchQuery = (searchInput) =>
       userName,
       image
     },
-    save[] {
+    like[] {
       _key,
       postedBy -> {
         _id,
@@ -37,7 +37,7 @@ export const feedQuery = `*[_type == 'post'] | order(_createdAt desc) {
     userName,
     image
   },
-  save[] {
+  like[] {
     _key,
     postedBy -> {
       _id,

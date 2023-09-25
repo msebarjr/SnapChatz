@@ -11,6 +11,7 @@ import Post from '../../components/Posts'
 
 // Data
 import { userQuery } from '../../utils/sanityData'
+import { getUserInfo } from '../../utils/getUser'
 
 // Assets
 import Logo from '../../assets/images/logo_dark.png'
@@ -21,7 +22,7 @@ const Home = () => {
   const [user, setUser] = useState(null)
   const scrollRef = useRef(null)
 
-  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear()
+  const userInfo = getUserInfo()
 
   useEffect(() => {
     // sub is the googleId of the user
