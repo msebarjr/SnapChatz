@@ -25,7 +25,7 @@ const Posts = ({ user }) => {
           <Route path='/' element={<Feed />} />
           <Route path='/category/:categoryId' element={<Feed />} />
           <Route
-            path='/post-detail/:pinId'
+            path='/post-detail/:postId'
             element={<PostDetail user={user} />}
           />
           <Route path='/create-post' element={<CreatePost user={user} />} />
