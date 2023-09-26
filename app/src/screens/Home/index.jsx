@@ -7,7 +7,7 @@ import { myConfiguredSanityClient } from '../../sanity/sanityClient'
 
 // Custom Components
 import Sidebar from '../../components/Sidebar'
-import Post from '../../components/Posts'
+import Posts from '../Posts'
 
 // Data
 import { userQuery } from '../../utils/sanityData'
@@ -70,7 +70,7 @@ const Home = () => {
       <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
           {/* <Route path='/user-profile/:userId' element={<UserProfile />} /> */}
-          <Route path='/*' element={<Post user={user && user} />} />
+          <Route path='/*' element={<Posts user={user && user} />} />
         </Routes>
       </div>
     </div>
