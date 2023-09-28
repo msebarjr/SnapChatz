@@ -6,8 +6,9 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import { myConfiguredSanityClient } from '../../sanity/sanityClient'
 
 // Custom Components
-import Sidebar from '../../components/Sidebar'
 import Posts from '../Posts'
+import Sidebar from '../../components/Sidebar'
+import UserProfile from '../../components/UserProfile'
 
 // Data
 import { userQuery } from '../../utils/sanityData'
@@ -31,7 +32,7 @@ const Home = () => {
     myConfiguredSanityClient.fetch(query).then((data) => {
       setUser(data[0])
     })
-  }, [])
+  }, [userInfo.sub])
 
   useEffect(() => {  
     scrollRef.current.scrollTo(0, 0)
@@ -69,7 +70,7 @@ const Home = () => {
       </div>
       <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
-          {/* <Route path='/user-profile/:userId' element={<UserProfile />} /> */}
+          <Route path='/user-profile/:userId' element={<UserProfile />} />
           <Route path='/*' element={<Posts user={user && user} />} />
         </Routes>
       </div>
