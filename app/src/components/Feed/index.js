@@ -37,6 +37,13 @@ const Feed = () => {
   if (isLoading)
     return <Spinner message='We are finding new images for you!' />;
 
+  if (!posts?.length)
+    return (
+      <div className='flex justify-center items-center w-full h-[calc(100vh-200px)]'>
+        <h2>No Posts Available!</h2>
+      </div>
+    );
+
   return <div>{posts && <MasonryLayout posts={posts} />}</div>;
 };
 
