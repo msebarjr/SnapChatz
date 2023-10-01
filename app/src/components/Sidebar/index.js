@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
-import { IoIosArrowForward } from 'react-icons/io';
 
 // Assets
 import Logo from '../../assets/images/logo_dark.png';
@@ -14,8 +13,15 @@ const isActiveStyles =
   'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize';
 
 const Sidebar = ({ user, closeToggle }) => {
+  const navigate = useNavigate();
+
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -63,19 +69,27 @@ const Sidebar = ({ user, closeToggle }) => {
           ))}
         </div>
       </div>
+
       {user && (
-        <Link
-          to={`user-profile/${user._id}`}
-          className='flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3'
-          onClick={handleCloseSidebar}
-        >
-          <img
-            src={user.image}
-            alt='user-profile'
-            className='w-10 h-10 rounded-full'
-          />
-          <p>{user.userName}</p>
-        </Link>
+        <div className='mb-3'>
+          <Link
+            to={`user-profile/${user._id}`}
+            className='flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3'
+            onClick={handleCloseSidebar}
+          >
+            <img
+              src={user.image}
+              alt='user-profile'
+              className='w-10 h-10 rounded-full'
+            />
+            <p>{user.userName}</p>
+          </Link>
+          <div className=' text-center font-semibold p-2 items-center bg-[#E1B890] rounded-lg shadow-lg mx-3 cursor-pointer'>
+            <button type='button' onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
