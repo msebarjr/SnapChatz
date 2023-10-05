@@ -17,9 +17,9 @@ const randomImage =
   'https://source.unsplash.com/1600x900/?nature,photography,technology';
 
 const activeBtnStyles =
-  'bg-[#E1B890] text-white font-bold py-2 px-4 rounded-full w-35 outline-none';
+  'bg-[#E1B890] font-bold py-2 px-4 rounded-full w-35 outline-none';
 const notActiveBtnStyles =
-  'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
+  'bg-primary mr-4 font-bold p-2 rounded-full w-20 outline-none opacity-60';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);

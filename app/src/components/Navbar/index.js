@@ -17,7 +17,7 @@ const Navbar = ({ searchInput, setSearchInput, user }) => {
   if (!user) return null;
 
   return (
-    <div className='flex gap-2 md:gap-5 w-full mt-5 pb-7'>
+    <div className='flex bg-zinc-200 gap-2 md:gap-5 w-full mt-5 pb-7'>
       <div className='flex justify-start items-center w-full px-2 rounded-md bg-white border-none outline-none focus:shadow-sm'>
         <IoMdSearch fontSize={21} className='ml-1' />
         <input
@@ -35,7 +35,7 @@ const Navbar = ({ searchInput, setSearchInput, user }) => {
         </Link>
         <Link
           to='/create-post'
-          className='bg-[#E1B890] text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center'
+          className='bg-[#E1B890] text-2xl rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center hover:opacity-80'
         >
           <IoMdAdd />
         </Link>
