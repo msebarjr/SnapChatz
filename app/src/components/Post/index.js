@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { AiTwotoneDelete, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 // Sanity
 import { urlFor } from '../../client';
@@ -23,8 +25,6 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
   const alreadyLikedPost = !!like?.filter(
     (item) => item.postedBy._id === googleId
   )?.length;
-
-  console.log({ alreadyLikedPost });
 
   const likePost = (id) => {
     if (!alreadyLikedPost) {
@@ -83,11 +83,20 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
         onClick={handlePostClick}
         className='relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out'
       >
-        <img
+        {/* <img
           src={urlFor(image).width(250).url()}
           alt='user-post'
           className='rounded-lg w-full'
+        /> */}
+
+        <LazyLoadImage
+          src={urlFor(image).width(250).url()}
+          alt='user-post'
+          wrapperClassName='w-full'
+          className='rounded-lg w-full'
+          effect='blur'
         />
+
         {isPostHovered && (
           <div
             className='absolute top-0 w-full h-full flex flex-col justify-between p-1 pr-2 pt-2 pb-2 z-50'

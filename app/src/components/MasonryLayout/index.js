@@ -5,8 +5,8 @@ import Masonry from 'react-masonry-css';
 import Post from '../Post';
 
 const breakpoints = {
-  default: 4,
-  3000: 6,
+  default: 7,
+  3000: 7,
   2000: 5,
   1200: 3,
   1000: 2,
