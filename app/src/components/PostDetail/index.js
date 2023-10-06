@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 // Sanity
 import { myConfiguredSanityClient } from '../../sanity/sanityClient';
@@ -88,11 +90,19 @@ const PostDetail = ({ user }) => {
         style={{ maxWidth: '1500px' }}
       >
         <div className='flex justify-center items-center md:items-start flex-initial'>
-          <img
+          {/* <img
             src={postDetails?.image && urlFor(postDetails.image).url()}
             alt='user-post'
             className='rounded-lg'
             width={450}
+          /> */}
+          <LazyLoadImage
+            src={
+              postDetails?.image && urlFor(postDetails.image).width(400).url()
+            }
+            alt='user-post'
+            className='rounded-lg'
+            effect='blur'
           />
         </div>
         <div className='w-full p-5 flex-1 xl:min-w-620'>
