@@ -4,6 +4,7 @@ import { RiHomeFill } from 'react-icons/ri';
 
 // Assets
 import Logo from '../../assets/images/logo_dark.png';
+import Avatar from '../../assets/images/blankAvatar.png';
 
 // Data
 import { categories } from '../../utils/categoryData';
@@ -82,7 +83,7 @@ const Sidebar = ({ user, closeToggle }) => {
             onClick={handleCloseSidebar}
           >
             <img
-              src={user.image}
+              src={user.image ? user.image : Avatar}
               alt='user-profile'
               className='w-10 h-10 rounded-full'
             />
