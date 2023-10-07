@@ -45,6 +45,14 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
         .then(() => {
           window.location.reload(false);
         });
+    } else {
+      myConfiguredSanityClient
+        .patch(id)
+        .unset([`like[userId=="${googleId}"]`])
+        .commit()
+        .then(() => {
+          window.location.reload(false);
+        });
     }
   };
 
@@ -127,6 +135,7 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
                 <button
                   type='button'
                   className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
+                  onClick={handleLikePost}
                 >
                   {like?.length} Saved
                 </button>
