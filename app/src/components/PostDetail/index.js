@@ -90,12 +90,6 @@ const PostDetail = ({ user }) => {
         style={{ maxWidth: '1500px' }}
       >
         <div className='flex justify-center items-center md:items-start flex-initial'>
-          {/* <img
-            src={postDetails?.image && urlFor(postDetails.image).url()}
-            alt='user-post'
-            className='rounded-lg'
-            width={450}
-          /> */}
           <LazyLoadImage
             src={
               postDetails?.image && urlFor(postDetails.image).width(400).url()

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 
+// Sanity Client
 import { myConfiguredSanityClient } from '../../sanity/sanityClient';
 
 // Data
@@ -55,7 +56,6 @@ const CreatePost = ({ user }) => {
         _type: 'post',
         title,
         about,
-        destination: 'https://www.michaelsebarjr.com',
         image: {
           _type: 'image',
           asset: {
@@ -190,7 +190,7 @@ const CreatePost = ({ user }) => {
                 onClick={handleSavePost}
                 className='bg-[#E1B890] text-black font-semibold p-2 rounded-full w-28 outline-none hover:opacity-80'
               >
-                Save Post
+                Create Post
               </button>
             </div>
           </div>

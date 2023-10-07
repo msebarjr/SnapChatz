@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
-import { AiTwotoneDelete, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
+import { AiTwotoneDelete } from 'react-icons/ai';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -14,7 +13,7 @@ import { myConfiguredSanityClient } from '../../sanity/sanityClient';
 // Data
 import { getUserInfo } from '../../utils/getUser';
 
-const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
+const Post = ({ post: { postedBy, image, _id, like } }) => {
   const [isPostHovered, setIsPostHovered] = useState(false);
 
   const navigate = useNavigate();
@@ -89,19 +88,13 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
         onMouseEnter={handlePostHovered}
         onMouseLeave={handlePostHovered}
         onClick={handlePostClick}
-        className='relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out'
+        className='relative cursor-zoom-in w-auto rounded-lg overflow-hidden transition-all duration-500 ease-in-out'
       >
-        {/* <img
-          src={urlFor(image).width(250).url()}
-          alt='user-post'
-          className='rounded-lg w-full'
-        /> */}
-
         <LazyLoadImage
           src={urlFor(image).width(250).url()}
           alt='user-post'
-          wrapperClassName='w-full'
-          className='rounded-lg w-full'
+          wrapperClassName='w-full h-full'
+          className='rounded-lg w-full h-full'
           effect='blur'
         />
 
@@ -122,54 +115,24 @@ const Post = ({ post: { postedBy, image, _id, destination, like } }) => {
                 </a>
               </div>
               {alreadyLikedPost ? (
-                // <button
-                //   type='button'
-                //   className='px-1 py-1 text-red-500 opacity-100 hover:opacity-60'
-                // >
-                //   {like?.length}
-                //   <AiFillHeart
-                //     className='text-red-500 opacity-100 hover:opacity-60'
-                //     size={28}
-                //   />
-                // </button>
                 <button
                   type='button'
                   className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                   onClick={handleLikePost}
                 >
-                  {like?.length} Saved
+                  {like?.length} {like.length > 1 ? 'Likes' : 'Like'}
                 </button>
               ) : (
-                // <button className='px-1 py-1' onClick={handleLikePost}>
-                //   <AiOutlineHeart
-                //     className='text-red-500 opacity-60 hover:opacity-100'
-                //     size={28}
-                //   />
-                // </button>
                 <button
                   type='button'
                   className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                   onClick={handleLikePost}
                 >
-                  Save
+                  Like
                 </button>
               )}
             </div>
-            <div className='flex justify-between items-center gap-2 w-full'>
-              {destination && (
-                <a
-                  href={destination}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
-                  title={destination}
-                >
-                  <BsFillArrowUpRightCircleFill />
-                  {destination.length > 15
-                    ? `${destination.slice(0, 15)}...`
-                    : destination}
-                </a>
-              )}
+            <div className='flex justify-between items-center pb-2 w-full'>
               {postedBy?._id === googleId && (
                 <button
                   type='button'

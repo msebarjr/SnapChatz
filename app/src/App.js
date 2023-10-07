@@ -9,6 +9,8 @@ import {
 // Screens
 import Login from './screens/Login';
 import Home from './screens/Home';
+
+// Data
 import { getUserInfo } from './utils/getUser';
 
 const App = () => {

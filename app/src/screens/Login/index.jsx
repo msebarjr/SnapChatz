@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 
+// Sanity Client
 import { myConfiguredSanityClient } from '../../sanity/sanityClient';
 
 // Assets
