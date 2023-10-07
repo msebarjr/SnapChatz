@@ -20,10 +20,10 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
   const navigate = useNavigate();
 
   const user = getUserInfo();
-  const googleId = user.sub;
+  const googleId = user?.sub;
 
   const alreadyLikedPost = !!like?.filter(
-    (item) => item.postedBy._id === googleId
+    (item) => item?.postedBy?._id === googleId
   )?.length;
 
   const likePost = (id) => {
@@ -44,8 +44,7 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
         .commit()
         .then(() => {
           window.location.reload(false);
-        });      
-      
+        });
     } else {
       myConfiguredSanityClient
         .patch(id)
