@@ -7,8 +7,7 @@ export const searchQuery = (searchInput) =>
         url
       }
     },
-    _id,
-    destination,
+    _id,    
     postedBy -> {
       _id,
       userName,
@@ -30,8 +29,7 @@ export const feedQuery = `*[_type == 'post'] | order(_createdAt desc) {
       url
     }
   },
-  _id,
-  destination,
+  _id,  
   postedBy -> {
     _id,
     userName,
@@ -57,8 +55,7 @@ export const postDetailQuery = (postId) => {
     _id,
     title, 
     about,
-    category,
-    destination,
+    category,  
     postedBy->{
       _id,
       userName,
@@ -91,8 +88,7 @@ export const postDetailMorePostQuery = (post) => {
         url
       }
     },
-    _id,
-    destination,
+    _id,    
     postedBy->{
       _id,
       userName,
@@ -117,8 +113,7 @@ export const userCreatedPostsQuery = (userId) => {
         url
       }
     },
-    _id,
-    destination,
+    _id,    
     postedBy->{
       _id,
       userName,
@@ -142,8 +137,7 @@ export const userLikedPostsQuery = (userId) => {
         url
       }
     },
-    _id,
-    destination,
+    _id,    
     postedBy->{
       _id,
       userName,

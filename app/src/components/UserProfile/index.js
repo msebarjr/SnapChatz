@@ -60,12 +60,6 @@ const UserProfile = () => {
       <div className='flex flex-col pb-5'>
         <div className='relative flex flex-col mb-7'>
           <div className='flex flex-col justify-center items-center'>
-            {/* <img
-              src={randomImage}
-              alt='banner-pic'
-              className='w-full h-370 2xl:h-510 shadow-lg object-cover'
-              loading='lazy'
-            /> */}
             <LazyLoadImage
               src={randomImage}
               alt='banner-pic'

@@ -3,6 +3,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
+// Sanity Client
 import { myConfiguredSanityClient } from '../../sanity/sanityClient'
 
 // Custom Components
