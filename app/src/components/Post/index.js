@@ -12,6 +12,7 @@ import { myConfiguredSanityClient } from '../../sanity/sanityClient';
 
 // Data
 import { getUserInfo } from '../../utils/getUser';
+import toast from 'react-hot-toast';
 
 const Post = ({ post: { postedBy, image, _id, like } }) => {
   const [isPostHovered, setIsPostHovered] = useState(false);
@@ -43,7 +44,8 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
         .commit()
         .then(() => {
           window.location.reload(false);
-        });
+        });      
+      
     } else {
       myConfiguredSanityClient
         .patch(id)
@@ -57,6 +59,7 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
 
   const unlikePost = (id) => {
     myConfiguredSanityClient.delete(id).then(() => window.location.reload());
+    toast.success('Post has been deleted!');
   };
 
   const handlePostHovered = () => {

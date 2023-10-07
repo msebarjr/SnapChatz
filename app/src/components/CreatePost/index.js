@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
+import toast from 'react-hot-toast';
 
 // Sanity Client
 import { myConfiguredSanityClient } from '../../sanity/sanityClient';
@@ -18,7 +19,6 @@ const CreatePost = ({ user }) => {
   const [title, setTitle] = useState('');
   const [about, setAbout] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isInputFieldErrors, setIsInputFieldsErrors] = useState(false);
   const [category, setCategory] = useState(null);
   const [imageAsset, setImageAsset] = useState(null);
   const [wrongImageType, setWrongImageType] = useState(false);
@@ -72,10 +72,8 @@ const CreatePost = ({ user }) => {
       };
 
       myConfiguredSanityClient.create(doc).then(() => navigate('/'));
-    } else {
-      setIsInputFieldsErrors(true);
-      setTimeout(() => setIsInputFieldsErrors(false), 5000);
-    }
+      toast.success('Post saved successfully!');
+    } else toast.error('Please fill in all fields!');
   };
 
   const handleDeleteImg = () => setImageAsset(null);
@@ -85,11 +83,6 @@ const CreatePost = ({ user }) => {
 
   return (
     <div className='flex flex-col justify-center items-center mt-5 lg:h-4/5'>
-      {isInputFieldErrors && (
-        <p className='text-red-500 mb-5 text-xl transition-all duration-150 ease-in'>
-          Please fill in all the fields
-        </p>
-      )}
       <div className='flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5 w-full'>
         <div className='bg-secondaryColor p-3 flex flex-0.7 w-full'>
           <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420'>
