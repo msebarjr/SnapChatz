@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
 
+// Sanity
+import { myConfiguredSanityClient } from '../../sanity/sanityClient';
+
 // Assets
 import Logo from '../../assets/images/logo_dark.png';
 import Avatar from '../../assets/images/blankAvatar.png';
@@ -25,6 +28,14 @@ const Sidebar = ({ user, closeToggle }) => {
   };
 
   const handleLogout = () => {
+    const guestAccount = '1234567890';
+
+    if (user._id === guestAccount)
+      myConfiguredSanityClient.delete(guestAccount).then(() => {
+        localStorage.removeItem('user');
+        navigate('/login', { replace: true });
+      });
+
     localStorage.removeItem('user');
     navigate('/login', { replace: true });
   };
