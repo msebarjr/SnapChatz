@@ -18,6 +18,7 @@ const Login = () => {
     const userGoogleInfo = jwt_decode(response.credential)     
     const { given_name: firstName, family_name: lastName, sub: googleId, picture: userPhoto} = userGoogleInfo
 
+    localStorage.removeItem('user')
     localStorage.setItem('user', JSON.stringify(userGoogleInfo))
     
     // Sets fields for Sanity user schema - backend > schemas > user.js
@@ -31,6 +32,24 @@ const Login = () => {
     myConfiguredSanityClient.createIfNotExists(doc).then(() => {
       navigate('/', { replace: true })
     })
+  }
+
+  const handleGuestLogin = () => {
+    const guest = {given_name: 'Guest', family_name: '', sub: '1234567890', picture: 'https://i.ibb.co/VVkxPPn/guest-Avatar.jpg'}
+
+    localStorage.removeItem('user')
+    localStorage.setItem('user', JSON.stringify(guest))
+
+    const doc = {
+      _id: guest.sub, // Same as googleId
+      _type: 'user', // Tells Sanity which document we are creating
+      userName: `${guest.given_name} ${guest.family_name}`,
+      image: guest.picture
+    }
+
+    myConfiguredSanityClient.createIfNotExists(doc).then(() => {
+      navigate('/', { replace: true })
+    })    
   }
   
   return (
@@ -55,6 +74,9 @@ const Login = () => {
                 onError={responseGoogle}
                 useOneTap
               />
+            </div>
+            <div className='border-[2px] border-[#E1B890] w-[250px] rounded-sm mt-5'>
+              <button type='button' className='w-full h-full py-2 text-[#E1B890] text-center hover:bg-[#E1B890] hover:text-black' onClick={handleGuestLogin}>Guest Login</button>
             </div>
           </div>
         </div>
