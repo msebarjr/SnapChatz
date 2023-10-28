@@ -112,7 +112,7 @@ const CreatePost = ({ user }) => {
                 <img
                   src={imageAsset?.url}
                   alt='uploaded-img'
-                  className='h-full w-full'
+                  className='h-full w-full object-contain'
                 />
                 <button
                   type='button'
