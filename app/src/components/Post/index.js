@@ -119,10 +119,10 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
               {alreadyLikedPost ? (
                 <button
                   type='button'
-                  className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
+                  className='bg-red-500 opacity-100 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                   onClick={handleLikePost}
                 >
-                  {like?.length} {like.length > 1 ? 'Likes' : 'Like'}
+                  Liked
                 </button>
               ) : (
                 <button

@@ -28,14 +28,6 @@ const Sidebar = ({ user, closeToggle }) => {
   };
 
   const handleLogout = () => {
-    const guestAccount = '1234567890';
-
-    if (user._id === guestAccount)
-      myConfiguredSanityClient.delete(guestAccount).then(() => {
-        localStorage.removeItem('user');
-        navigate('/login', { replace: true });
-      });
-
     localStorage.removeItem('user');
     navigate('/login', { replace: true });
   };
