@@ -43,7 +43,7 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
         ])
         .commit()
         .then(() => {
-          window.location.reload(false);
+          window.location.reload();
         });
     } else {
       myConfiguredSanityClient
@@ -51,7 +51,7 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
         .unset([`like[userId=="${googleId}"]`])
         .commit()
         .then(() => {
-          window.location.reload(false);
+          window.location.reload();
         });
     }
   };
