@@ -152,7 +152,7 @@ const PostDetail = ({ user }) => {
             <Link to={`user-profile/${postDetails.postedBy?._id}`}>
               <img
                 className='w-10 h-10 rounded-full cursor-pointer'
-                src={postDetails.postedBy?.image}
+                src={user?.image}
                 alt='user-profile'
               />
             </Link>
