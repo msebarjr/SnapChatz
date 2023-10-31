@@ -22,39 +22,39 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
   const user = getUserInfo();
   const googleId = user?.sub;
 
-  const alreadyLikedPost = !!like?.filter(
-    (item) => item?.postedBy?._id === googleId
-  )?.length;
+  // const alreadyLikedPost = !!like?.filter(
+  //   (item) => item?.postedBy?._id === googleId
+  // )?.length;
 
-  const likePost = (id) => {
-    if (!alreadyLikedPost) {
-      myConfiguredSanityClient
-        .patch(id)
-        .setIfMissing({ like: [] })
-        .insert('after', 'like[-1]', [
-          {
-            _key: uuidv4(),
-            userId: googleId,
-            postedBy: {
-              _type: 'postedBy',
-              _ref: googleId,
-            },
-          },
-        ])
-        .commit()
-        .then(() => {
-          window.location.reload();
-        });
-    } else {
-      myConfiguredSanityClient
-        .patch(id)
-        .unset([`like[userId=="${googleId}"]`])
-        .commit()
-        .then(() => {
-          window.location.reload();
-        });
-    }
-  };
+  // const likePost = (id) => {
+  //   if (!alreadyLikedPost) {
+  //     myConfiguredSanityClient
+  //       .patch(id)
+  //       .setIfMissing({ like: [] })
+  //       .insert('after', 'like[-1]', [
+  //         {
+  //           _key: uuidv4(),
+  //           userId: googleId,
+  //           postedBy: {
+  //             _type: 'postedBy',
+  //             _ref: googleId,
+  //           },
+  //         },
+  //       ])
+  //       .commit()
+  //       .then(() => {
+  //         window.location.reload();
+  //       });
+  //   } else {
+  //     myConfiguredSanityClient
+  //       .patch(id)
+  //       .unset([`like[userId=="${googleId}"]`])
+  //       .commit()
+  //       .then(() => {
+  //         window.location.reload();
+  //       });
+  //   }
+  // };
 
   const unlikePost = (id) => {
     myConfiguredSanityClient.delete(id).then(() => window.location.reload());
@@ -74,10 +74,10 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
     e.stopPropagation();
   };
 
-  const handleLikePost = (e) => {
-    e.stopPropagation();
-    likePost(_id);
-  };
+  // const handleLikePost = (e) => {
+  //   e.stopPropagation();
+  //   likePost(_id);
+  // };
 
   const handleUnlikePost = (e) => {
     e.stopPropagation();
@@ -116,7 +116,7 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
                   <MdDownloadForOffline />
                 </a>
               </div>
-              {alreadyLikedPost ? (
+              {/* {alreadyLikedPost ? (
                 <button
                   type='button'
                   className='bg-red-500 opacity-100 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
@@ -132,7 +132,7 @@ const Post = ({ post: { postedBy, image, _id, like } }) => {
                 >
                   Like
                 </button>
-              )}
+              )} */}
             </div>
             <div className='flex justify-between items-center pb-2 w-full'>
               {postedBy?._id === googleId && (
