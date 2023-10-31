@@ -117,7 +117,7 @@ const PostDetail = ({ user }) => {
             <p className='mt-3'>{postDetails.about}</p>
           </div>
           <Link
-            to={`user-profile/${postDetails.postedBy?._id}`}
+            to={`/user-profile/${postDetails.postedBy?._id}`}
             className='flex gap-2 mt-5 items-center rounded-lg'
           >
             <img
@@ -136,11 +136,18 @@ const PostDetail = ({ user }) => {
                 className='flex gap-2 mt-5 items-center rounded-lg'
                 key={idx}
               >
-                <img
+                {/* <img
                   src={comment.postedBy?.image}
                   alt='user-profile'
                   className='w-10 h-10 rounded-full cursor-pointer'
-                />
+                /> */}
+                <Link to={`/user-profile/${comment.postedBy?._id}`}>
+                  <img
+                    className='w-10 h-10 rounded-full cursor-pointer'
+                    src={comment.postedBy?.image}
+                    alt='user-profile'
+                  />
+                </Link>
                 <div className='flex flex-col'>
                   <p className='font-bold'>{comment.postedBy.userName}</p>
                   <p>{comment.comment}</p>
@@ -149,7 +156,7 @@ const PostDetail = ({ user }) => {
             ))}
           </div>
           <div className='flex flex-wrap mt-6 gap-3'>
-            <Link to={`user-profile/${postDetails.postedBy?._id}`}>
+            <Link to={`/user-profile/${user?._id}`}>
               <img
                 className='w-10 h-10 rounded-full cursor-pointer'
                 src={user?.image}

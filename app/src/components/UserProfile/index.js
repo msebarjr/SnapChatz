@@ -39,13 +39,14 @@ const UserProfile = () => {
       myConfiguredSanityClient
         .fetch(createdPostsQuery)
         .then((data) => setPosts(data));
-    } else {
-      const likedPostsQuery = userLikedPostsQuery(userId);
-
-      myConfiguredSanityClient
-        .fetch(likedPostsQuery)
-        .then((data) => setPosts(data));
     }
+    // else {
+    //   const likedPostsQuery = userLikedPostsQuery(userId);
+
+    //   myConfiguredSanityClient
+    //     .fetch(likedPostsQuery)
+    //     .then((data) => setPosts(data));
+    // }
   }, [text, userId]);
 
   if (!user) return <Spinner message='Loading profile...' />;
@@ -77,18 +78,19 @@ const UserProfile = () => {
             >
               Created
             </button>
-            <button
+            {/* <button
               type='button'
               onClick={(e) => {
                 setText(e.target.textContent);
-                setActiveBtn('liked');
+                // setActiveBtn('liked');
               }}
               className={`${
                 activeBtn === 'liked' ? activeBtnStyles : notActiveBtnStyles
-              }`}
+              }`
+            }
             >
               Liked
-            </button>
+            </button> */}
           </div>
 
           {posts?.length ? (
